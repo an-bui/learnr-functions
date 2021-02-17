@@ -38,29 +38,34 @@ For example:
 
 - `mean()` is a function that lets you **take the mean** of the input.  
 
-We'll create some data:
+We'll create some data called `dat` and use `mean()` to calculate the mean:
 
-```{r dat-setup, echo = TRUE}
+```{r dat-code, echo = TRUE}
 dat <- c(3, 5, 6, 9)
-
-dat
 ```
 
-Try using `mean()` to calculate the mean of `dat`.
+```{r mean-dat-setup}
+dat <- c(3, 5, 6, 9)
+```
 
-```{r mean-dat, exercise = TRUE}
+```{r mean-dat, exercise = TRUE, exercise.setup = "mean-dat-setup"}
 
 ```
 
 - `plot()` is a function that allows you to **make a plot**, and the arguments lets you customize that plot.  
 
-We'll make some more fake data:
-```{r yaxis-setup, echo = TRUE}
+We'll make some more fake data called `yaxis`, and then use `plot()` to make a plot of `dat` on the x-axis and `yaxis` on the y-axis.
+
+```{r yaxis-code, echo = TRUE}
 yaxis <- sqrt(dat) + 3
 ```
 
-Try using `plot()` to make a plot of `dat` on the x-axis and `yaxis` on the y-axis
-```{r plot-exercise, exercise = TRUE}
+```{r plot-exercise-setup}
+dat <- c(3, 5, 6, 9)
+yaxis <- sqrt(dat) + 3
+```
+
+```{r plot-exercise, exercise = TRUE, exercise.setup = "plot-exercise-setup"}
 
 ```
 
@@ -89,7 +94,7 @@ $F = C*1.8 + 32$
 
 We can write a function called `f_to_c` that converts fahrenheit to celsius.
 
-```{r function-setup, echo = TRUE}
+```{r function, echo = TRUE}
 
 f_to_c <- function(x) {
   convert <- (x - 32)/1.8
@@ -100,7 +105,14 @@ f_to_c <- function(x) {
 
 Yay! Now, we can see what 78 fahrenheit is in celsius.
 
-```{r testing-function, exercise = TRUE}
+```{r testing-function-setup}
+f_to_c <- function(x) {
+  convert <- (x - 32)/1.8
+  return(convert)
+}
+```
+
+```{r testing-function, exercise = TRUE, exercise.setup = "testing-function-setup"}
 
 ```
 
@@ -124,6 +136,24 @@ c_to_f <- function(x) {
   return(convert)
 }
 ```
+
+And then, try using your function to convert 35 celsius into fahrenheit.
+
+```{r exercise-try-function-setup}
+c_to_f <- function(x) {
+  convert <- x*1.8 + 32
+  return(convert)
+}
+```
+
+```{r exercise-try-function, exercise = TRUE, exercise.lines = 10, exercise.setup = "exercise-try-function-setup"}
+
+```
+
+```{r exercise-try-function-hint}
+c_to_f(35)
+```
+
 
 ## 3. A bit fancier
 
@@ -165,7 +195,21 @@ temp.conv <- function(from, to, x) {
 
 Let's try it out! Try converting 25 degrees celsius to fahrenheit.
 
-```{r convert-exercise, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 10}
+```{r convert-function-1}
+temp.conv <- function(from, to, x) {
+  if(from == "celsius" & to == "fahrenheit") {
+    convert <- x*1.8 + 32
+    } else if(from == "fahrenheit" & to == "celsius") {
+    convert <- (x - 32)/1.8
+    } else {
+      warning("The inputs provided (from = '", from, "' & to = '", to,"') are not as expected. Double check spelling.")
+      return(NA)
+    }
+  return(convert)
+}
+```
+
+```{r convert-exercise, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 10, exercise.setup = "convert-function-1"}
 
 ```
 
@@ -175,7 +219,7 @@ temp.conv(from = "celsius", to = "fahrenheit", x = 25)
 
 But what if we supply arguments that aren't `"celsius"` or `"fahrenheit"`? Try it below.
 
-```{r convert-exercise-wrong-arg, exercise = TRUE, exercise.lines = 10}
+```{r convert-exercise-wrong-arg, exercise = TRUE, exercise.lines = 10, exercise.setup = "convert-function-1"}
 
 ```
 
@@ -209,7 +253,22 @@ temp.conv <- function(from, to, x) {
 ```
 
 Try using the function with the new arguments!
-```{r new-func-exercise, exercise = TRUE, exercise.lines = 10}
+
+```{r new-func-exercise-setup}
+temp.conv <- function(from, to, x) {
+  if(from == "celsius" || from == "c" & to == "fahrenheit" || to == "f") {
+    convert <- x*1.8 + 32
+  } else if(from == "fahrenheit" || from == "f" & to == "celsius" || to == "c") {
+    convert <- (x - 32)/1.8
+   } else {
+      warning("The inputs provided (from = '", from, "' & to = '", to,"') are not as expected. Double check spelling.")
+      return(NA)
+  }
+  return(convert)
+}
+```
+
+```{r new-func-exercise, exercise = TRUE, exercise.lines = 10, exercise.setup = "new-func-exercise-setup"}
 
 ```
 
