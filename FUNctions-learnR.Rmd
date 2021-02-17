@@ -1,0 +1,216 @@
+---
+title: "Putting the fun in FUNctions"
+output: 
+  learnr::tutorial:
+    progressive: true
+    allow_skip: true
+runtime: shiny_prerendered
+description: "This is a short tutorial on writing functions in R."
+---
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## About and credits
+
+```{r, out.width = "600px", fig.align = "center"}
+knitr::include_graphics("images/title.jpg")
+```
+
+This script was adapted from [Tanya Rogers](https://outsidethequadrat.weebly.com/), who adapted it from Umi Hoshijima, who adapted it from [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html)!  
+
+This is a short tutorial on writing functions in R by An Bui with help from Juliette Verstaen and Sam Csik.
+
+## 1. What do functions do?
+
+**Functions** allow you to 'do' things in R. Using a function has 3 basic components:
+
+```{r, out.width = "600px", fig.align = "center"}
+knitr::include_graphics("images/function-components.jpg")
+```
+
+For example:  
+
+- `mean()` is a function that lets you **take the mean** of the input.  
+
+We'll create some data:
+
+```{r dat-setup, echo = TRUE}
+dat <- c(3, 5, 6, 9)
+
+dat
+```
+
+Try using `mean()` to calculate the mean of `dat`.
+
+```{r mean-dat, exercise = TRUE}
+
+```
+
+- `plot()` is a function that allows you to **make a plot**, and the arguments lets you customize that plot.  
+
+We'll make some more fake data:
+```{r yaxis-setup, echo = TRUE}
+yaxis <- sqrt(dat) + 3
+```
+
+Try using `plot()` to make a plot of `dat` on the x-axis and `yaxis` on the y-axis
+```{r plot-exercise, exercise = TRUE}
+
+```
+
+```{r plot-exercise-hint}
+plot(x = dat, y = yaxis)
+```
+
+## 2. Writing your own functions
+
+Sometimes R doesn't have the function you want. That's ok, because you can write your own! The function called `function()` lets you write a function. The basic structure reflects function components: 
+
+```{r, out.width = "600px", fig.align = "center"}
+knitr::include_graphics("images/function-structure.jpg")
+```
+
+
+Let's put that into practice by writing a function to convert temperature values!  
+
+The US uses fahrenheit, bleh. Let's convert that into celsius. The formula for converting fahrenheit into celsius is:  
+
+$C = \frac{F-32}{1.8}$
+
+And the formula for converting celsius into fahrenheit is:
+
+$F = C*1.8 + 32$
+
+We can write a function called `f_to_c` that converts fahrenheit to celsius.
+
+```{r function-setup, echo = TRUE}
+
+f_to_c <- function(x) {
+  convert <- (x - 32)/1.8
+  return(convert)
+}
+
+```
+
+Yay! Now, we can see what 78 fahrenheit is in celsius.
+
+```{r testing-function, exercise = TRUE}
+
+```
+
+### Formatting note
+
+The curly brackets in functions are really important for making sure the function code actually works. You can save yourself a headache when you're writing a function if you immediately hit enter a bunch of times after opening up your brackets. After you're done writing your function, you can delete all the extraneous space. This ensures that you're not accidentally deleting your brackets!  
+
+### Write your own function!
+
+Try writing a function called `c_to_f` that converts celsius to fahrenheit! Remember, the formula is:
+
+$C*1.8 + 32 = F$
+
+```{r exercise-function, exercise = TRUE, exercise.lines = 10}
+
+```
+
+```{r exercise-function-hint}
+c_to_f <- function(x) {
+  convert <- x*1.8 + 32
+  return(convert)
+}
+```
+
+## 3. A bit fancier
+
+Let's say that we want to convert between celsius and fahrenheit, but we don't want to have two separate functions for each. We can write a function that uses **conditionals**, which tell our code to execute different actions depending on whether a condition is true or false. To do so, we can incorporate `if()` or `if/else()` statements within our function.  
+
+In order to wrap our heads around this, let's think of the functions we just wrote, `f_to_c()` and `c_to_f()`. We can put all of the components of those functions into one, and designate arguments for switching between each conversion. It's like compressing a bunch of different operations (the conversion) into one thing (the function), and calling the right conversion every time you wanted to use the function (by using the arguments).  
+
+Here, we'll use the `function()` structure to make a function called `temp.conv` that converts between celsius and fahrenheit. Inside the function, we'll use `if()` statements to switch between all those conversion equations. The `if/else()` statement allows us to say:  
+- **If** the inputs are celsius and fahrenheit, then use this conversion: $x*1.8 +32$. **else...**  
+- **If** the inputs are fahrenheit and celsius, then use this conversion: $\frac{x-32}{1.8}$.  **else...**  
+- **If** the inputs are neither fahrenheit or celsius, then return *NA* and give us a warning message to let us know something is wrong (this last step is optional, but can really help to troubleshoot problematic code).  
+
+This is how our function will be set up:
+
+```{r echo = TRUE}
+# arguments in: from, to, and the temperature
+temp.conv <- function(from, to, x) {
+  
+  # if `from` is "celsius" and `to` is "fahrenheit", then
+  if(from == "celsius" & to == "fahrenheit") {
+    # convert from celsius to fahrenheit
+    convert <- x*1.8 + 32
+    
+    # if `from` is "fahrenheit" and `to` is "celsius", then
+    } else if(from == "fahrenheit" & to == "celsius") {
+    # convert from fahrenheit to celsius
+    convert <- (x - 32)/1.8
+   
+    # if inputs that don't match either of the first two conditionals are supplied, give warning and return NA 
+    } else {
+      warning("The inputs provided (from = '", from, "' & to = '", to,"') are not as expected. Double check spelling.")
+      return(NA)
+    }
+  
+  # return the converted value
+  return(convert)
+}
+```
+
+Let's try it out! Try converting 25 degrees celsius to fahrenheit.
+
+```{r convert-exercise, exercise = TRUE, exercise.eval = TRUE, exercise.lines = 10}
+
+```
+
+```{r convert-exercise-hint}
+temp.conv(from = "celsius", to = "fahrenheit", x = 25)
+```
+
+But what if we supply arguments that aren't `"celsius"` or `"fahrenheit"`? Try it below.
+
+```{r convert-exercise-wrong-arg, exercise = TRUE, exercise.lines = 10}
+
+```
+
+## 4. Different types of arguments
+
+If you want to incorporate different types of arguments into your function, you can use the or operator: `||`
+
+```{r echo = TRUE}
+# arguments in: from, to, and the temperature
+temp.conv <- function(from, to, x) {
+  
+  # if `from` is "celsius" or "c", and `to` is "fahrenheit" or "f", then
+  if(from == "celsius" || from == "c" & to == "fahrenheit" || to == "f") {
+    # convert from celsius to fahrenheit
+    convert <- x*1.8 + 32
+    
+    # if `from` is "fahrenheit" or "f", and `to` is "celsius" or "c", then
+  } else if(from == "fahrenheit" || from == "f" & to == "celsius" || to == "c") {
+    # convert from fahrenheit to celsius
+    convert <- (x - 32)/1.8
+ 
+    # if `from` and `to` don't match any of the expected inputs, give warning and return NA 
+   } else {
+      warning("The inputs provided (from = '", from, "' & to = '", to,"') are not as expected. Double check spelling.")
+      return(NA)
+  }
+  
+  # return the converted value
+  return(convert)
+}
+```
+
+Try using the function with the new arguments!
+```{r new-func-exercise, exercise = TRUE, exercise.lines = 10}
+
+```
+
+
+
+
+
