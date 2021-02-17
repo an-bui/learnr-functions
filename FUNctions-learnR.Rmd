@@ -4,6 +4,7 @@ output:
   learnr::tutorial:
     progressive: true
     allow_skip: true
+    css: css/style.css
 runtime: shiny_prerendered
 description: "This is a short tutorial on writing functions in R."
 ---
@@ -21,7 +22,9 @@ knitr::include_graphics("images/title.jpg")
 
 This script was adapted from [Tanya Rogers](https://outsidethequadrat.weebly.com/), who adapted it from Umi Hoshijima, who adapted it from [Software Carpentry](https://swcarpentry.github.io/r-novice-inflammation/02-func-R/index.html)!  
 
-This is a short tutorial on writing functions in R by An Bui with help from Juliette Verstaen and Sam Csik.
+This is a short tutorial on writing functions in R by An Bui with help from Juliette Verstaen and Sam Csik.  
+
+Source code: [Github](https://github.com/an-bui/learnr-functions)
 
 ## 1. What do functions do?
 

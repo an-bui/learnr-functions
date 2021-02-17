@@ -4,14 +4,14 @@ dplyr learnr tutorial: code from Allison Horst (Github: allisonhorst)
 
 /*-------- Google font imports --------*/
 
-@import url(//fonts.googleapis.com/css?family=Roboto+Mono);
-@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@200;400;500;700&display=swap');
+@import url(//fonts.googleapis.com/css?family=Montserrat);
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
 
 
 /*-------- Background color & body font --------*/
 body {
   background-color: white;
-  font-family: 'Tajawal', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   color: black;
   font-size: 14px;
   padding-left: 20px;
@@ -36,36 +36,38 @@ body {
 
 /* Emphasis (e.g. italics) */
 em {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: dimgray;
 }
 
-/*--------- Headers ---------*/
+/*--------- HEADERS ---------*/
 
+/*--------- titles and headers ---------*/
 h2 {
-  color: black;
-  font-family: 'Tajawal', sans-serif;
-  font-weight: 500;
+  color: #151E2F;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
 }
 
+/*--------- headers for subsections of pages ---------*/
 h3 {
-  color: black;
-  font-family: 'Tajawal', sans-serif;
+  color: #BE5A47;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   text-transform: uppercase;
 }
 
 h4 {
-  color: darkmagenta;
-  font-family: 'Tajawal', sans-serif;
+  color: #604A76;
+  font-family: 'Montserrat', sans-serif;
   font-weight: 500;
   padding-top: 20px;
   text-transform: uppercase;
 }
 
 h5 {
-    color: mediumorchid;
-    font-family: 'Tajawal', sans-serif;
+    color: #4A5352;
+    font-family: 'Montserrat', sans-serif;
     font-size: 16px;
 }
 
@@ -82,7 +84,7 @@ h5 {
     background-color: #EBEBEB;
     border: 0;
     font-size: 13px;
-    font: 'Tajawal', sans-serif
+    font-family: 'Courier Prime', monospace;
 }
 
 /*-------- Code chunk main panel --------*/
@@ -93,7 +95,7 @@ h5 {
     border-bottom: 1px solid gainsboro;
     border-right: 1px solid gainsboro;
     border-left: 1px solid gainsboro;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Courier Prime', monospace;
     font-size: 13px;
 }
 
@@ -121,7 +123,7 @@ h5 {
 
 /*------- In line code aesthetic --------*/
 code {
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Courier Prime', monospace;
     color: teal;
     background-color: ghostwhite;
     font-size: 13px;
@@ -132,25 +134,25 @@ code {
     background-color: #E5E4E2;
     border: 0;
     font-size: 13;
-    font: 'Tajawal', sans-serif;
+    font-family: 'Courier Prime', monospace;
 }
 
 /*------- Hyperlinks --------*/
 a {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     color: indigo;
     text-decoration: none;
 }
 
 a:hover, a:focus {
-    color: mediumslateblue;
+    color: #604A76;
     text-decoration: underline;
 }
 
 
 /*------- Main menu -------*/
 .topicsList .topic {
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 400;
     color: teal;
     line-height: 45px;
@@ -174,8 +176,8 @@ a:hover, a:focus {
 
 /*------- Selected menu item -------*/
 .topicsList .topic.current {
-    font-family: 'Tajawal', sans-serif;
-    background-color: mediumslateblue;
+    font-family: 'Montserrat', sans-serif;
+    background-color: #4A5352;
     color: white;
     border: 0;
     padding-left: 20px;
@@ -183,7 +185,7 @@ a:hover, a:focus {
 }
 /*--- When hovering ---*/
 .topicsList .topic:hover {
-    background-color: mediumorchid;
+    background-color: #84A6A2;
     color: white;
     padding-left: 20px;
     padding-right: 20px;
@@ -191,9 +193,9 @@ a:hover, a:focus {
 
 /*------- Solution / Hint buttons -------*/
 tutorial-exercise-input .btn-tutorial-solution {
-    background-color: mediumorchid;
+    background-color: #84A6A2;
     color: white;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Courier Prime', monospace;
     padding-top: 5px;
 }
 
@@ -201,9 +203,9 @@ tutorial-exercise-input .btn-tutorial-solution {
 /*------- Solution popover --------*/
 popover-title {
     margin: 0;
-    background-color: mediumslateblue;
+    background-color: #604A76;
     color: white;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Courier Prime', monospace;
 }
 
 
@@ -211,7 +213,7 @@ popover-title {
 
 .tutorial-exercise-input .btn-xs:hover {
     font-weight: normal;
-    background-color: mediumorchid;
+    background-color: #84A6A2;
     color: white;
     padding-top: 5px;
 }
@@ -219,38 +221,38 @@ popover-title {
 /*------- Button default/primary -------*/
 .btn-default {
     color: white;
-    background-color: mediumslateblue;
+    background-color: #604A76;
     background-image: none;
     border: none;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-shadow: none;
     padding-top: 5px;
 }
 
 .btn-primary, .btn-success, .btn-info, .btn-light, .btn-xs  {
   color: white;
-    background-color: mediumslateblue;
+    background-color: #604A76;
     background-image: none;
     border: none;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-shadow: none;
     padding-top: 5px;
 }
 
 .topicActions .btn-primary:hover, .btn-success:hover, .btn-info:hover, .btn-light:hover, .btn-xs:hover {
     color: white;
-    background-color: mediumorchid;
+    background-color: #84A6A2;
     background-image: none;
     border: none;
-    font-family: 'Tajawal', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-shadow: none;
     padding-top: 5px;
 }
 
 .btn-default:hover, btn-success:hover, btn-info:hover, btn-primary:hover {
-  background-color: mediumorchid;
+  background-color: #84A6A2;
   color: white;
-  font-family: 'Tajawal', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   padding-top: 5px;
 }
 
