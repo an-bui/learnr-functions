@@ -11,6 +11,7 @@ description: "This is a short tutorial on writing functions in R."
 
 ```{r setup, include=FALSE}
 library(learnr)
+library(tidyverse)
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
@@ -271,6 +272,111 @@ temp.conv <- function(from, to, x) {
 ```{r new-func-exercise, exercise = TRUE, exercise.lines = 10, exercise.setup = "new-func-exercise-setup"}
 
 ```
+
+## 5. Writing practice
+
+### Simple strings
+
+Try writing a function called `planet_awesome()` that puts "is awesome!" after each planet name! We'll set up by making a vector of names of 4 planets:
+
+```{r echo = TRUE}
+planets <- c("Mars", "Saturn", "Jupiter", "Mercury")
+```
+
+Try writing your function and seeing what the output is!
+```{r planet-names-setup}
+planets <- c("Mars", "Saturn", "Jupiter", "Mercury")
+```
+
+```{r planet-names-exercise, exercise = TRUE, exercise.lines = 30, exercise.setup = "planet-names-setup"}
+
+```
+
+```{r planet-names-exercise-hint}
+planet_awesome <- function(x) {
+  if(class(x) == "character") {
+    awesome_statement <- paste(x, " is awesome!", sep = "")
+    return(awesome_statement)
+  } else {
+    warning("Whoops! Wasn't expecting that. The inputs should be a character.")
+    return(NA)
+  }
+}
+```
+
+### Data cleaning
+
+You can use functions to help streamline your workflow. Let's say we have some data on our planets:
+
+```{r, message = FALSE, echo = TRUE}
+planet_data <- tribble(
+  ~ planet, ~ radius_km, ~ color,
+  "Mercury", 2440, "grey",
+  "Venus", 6052, "white",
+  "Earth", 6371, "blue",
+  "Mars", 3390, "red",
+  "Jupiter", 69911, "yellow",
+  "Saturn", 58232, "yellow",
+  "Uranus", 25362, "blue",
+  "Neptune", 24622, "blue"
+)
+```
+
+Write a function that uses `dplyr::filter()` to filter planet observations by color and pull out the radius data for each color. Don't forget to check to see if your function works!
+
+```{r color-exercise-setup}
+planet_data <- tribble(
+  ~ planet, ~ radius_km, ~ color,
+  "Mercury", 2440, "grey",
+  "Venus", 6052, "white",
+  "Earth", 6371, "blue",
+  "Mars", 3390, "red",
+  "Jupiter", 69911, "yellow",
+  "Saturn", 58232, "yellow",
+  "Uranus", 25362, "blue",
+  "Neptune", 24622, "blue"
+)
+```
+
+```{r color-exercise, exercise = TRUE, exercise.lines = 30, exercise.setup = "color-exercise"}
+color.pull <- function() {
+  if() {
+
+    return()
+  } else {
+    warning("Fill in your warning here!")
+    return(NA)
+  }
+}
+```
+
+```{r color-exercise-hint}
+
+color.pull <- function(data, color.choice) {
+  
+  if(color.choice != "grey" || "white" || "blue" || "red" || "yellow" &
+     class(data) != "tbl_df" || "tbl" || "dataframe") {
+    warning("Whoops! Wasn't expecting that. Double check your inputs.
+            Make sure that `data` is a data frame, and `color.choice` is grey, white,
+            blue, red, or yellow.")
+    return(NA)
+  } else {
+    radius_vector <- data %>% 
+      filter(color == color.choice) %>% 
+      pull(radius_km)
+    return(radius_vector)
+  }
+  
+}
+```
+
+
+
+
+
+
+
+
 
 
 
